@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 
 namespace DealerOnSolution1
 {
@@ -6,7 +7,7 @@ namespace DealerOnSolution1
     public class Rover
     {
         char d;
-        int x, y, val;
+        int x, y, value;
         char[] dir = { 'S', 'W', 'N', 'E' }; //cardinal directions
         static int maxX, maxY;
         bool inside = true;
@@ -18,24 +19,24 @@ namespace DealerOnSolution1
 
             switch (d)
             {
-                case 'N': val = 2; break;
-                case 'S': val = 0; break;
-                case 'E': val = 3; break;
-                case 'W': val = 1; break;
+                case 'N': value = 2; break;
+                case 'S': value = 0; break;
+                case 'E': value = 3; break;
+                case 'W': value = 1; break;
             }
         }
         public void analyze(char m)
         {
             switch (m)
             {
-                case 'L': val--; break;
-                case 'R': val++; break;
+                case 'L': value--; break;
+                case 'R': value++; break;
                 case 'M': move(); break;
             }
-            if (val == -1) val = dir.Length - 1;
-            if (val == dir.Length) val = 0;
+            if (value == -1) value = dir.Length - 1;
+            if (value == dir.Length) value = 0;
 
-            this.d = dir[val];
+            this.d = dir[value];
 
         }
         public void move()
@@ -48,7 +49,6 @@ namespace DealerOnSolution1
                 case 'W': this.x--; break;
             }
             if (this.x < 0 || this.y < 0 || this.x > maxX || this.y > maxY) this.inside = false;
-        }
-        
+        }       
     }
 }
